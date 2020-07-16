@@ -5,6 +5,7 @@ import ContactList from './ContactList';
 import Filter from './Filter';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { saveToLS, getFromLS } from '../utils/helpers';
 import styles from './App.module.css';
 
 class App extends Component {
@@ -19,17 +20,16 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
+    const contacts = getFromLS('contacts');
+    if (contacts) {
+      this.setState({ contacts: contacts });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    const { contacts } = this.state;
+    if (contacts !== prevState.contacts) {
+      saveToLS('contacts', contacts);
     }
   }
 

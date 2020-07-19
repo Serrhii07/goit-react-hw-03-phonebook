@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ContactListItem from './ContactListItem';
 
-const ContactList = ({ data, onDeleteContact }) => (
+const ContactList = ({ contacts, onDeleteContact }) => (
   <ul>
-    {data.map(({ id, name, number }) => (
+    {contacts.map(({ id, name, number }) => (
       <ContactListItem
         key={id}
         name={name}
@@ -16,7 +16,7 @@ const ContactList = ({ data, onDeleteContact }) => (
 );
 
 ContactList.propTypes = {
-  data: PropTypes.array.isRequired,
+  contacts: PropTypes.array.isRequired,
   onDeleteContact: PropTypes.func.isRequired,
 };
 

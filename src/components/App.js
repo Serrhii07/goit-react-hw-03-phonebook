@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import { saveToLS, getFromLS } from '../utils/helpers';
 import styles from './App.module.css';
 
@@ -90,7 +92,7 @@ class App extends Component {
         <h2 className={styles.header}>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
-          data={filteredNames}
+          contacts={filteredNames}
           onDeleteContact={this.deleteContact}
         />
       </div>
